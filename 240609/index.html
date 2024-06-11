@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <link rel="stylesheet" href="a.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header" style="text-align: center;">
+            <h1>조이현 수다방</h1>
+            <h2>이혀니 버블 기원 1208일차</h2>
+            <p class="comment">2024년 6월 9일</p>
+        </div>
+
+
+        <div class="imessage"></div>
+        <div class="imessage2" style="display: none;">
+            <p class="from-them">It was loud.</p>
+            <p class="from-me">Like is this an earthquake just go back to sleep</p>
+            <p class="from-them margin-b_one">It&rsquo;s more like &ldquo;this is an earthquake. Check the Internet.
+                Yup.
+                Earthquake. This is the size. This is the epicenter. Check social media. Make sure the East Coast
+                knows
+                I&rsquo;m alive. Okay, try and go back to sleep.&rdquo;</p>
+            <p class="from-me no-tail emoji">👍🏻</p>
+            <p class="from-me">Glad you&rsquo;re safe</p>
+        </div>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $.getJSON('./chat.json', function (items) {
+                $.each(items, function (i, item) {
+                    if (item.user == 1) {
+                        $(".imessage").append(`<p class="from-them">${item["text"]}</p>`);
+                    }
+                    else if (item.user == -1) { $(".imessage").append(`<p class="from-them no-tail medias">${item["text"]}</p>`); }
+                    else { $(".imessage").append(`<p class="from-me">${item["text"]}</p>`); }
+
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
